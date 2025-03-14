@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      body {
+        font-family: sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+
+      .header_div {
+        text-align: center;
+        padding: 20px;
+        font-size: 46px;
+      }
+
+      #nav_div {
+        display: flex;
+        justify-content: space-evenly;
+        flex-direction: row;
+      }
+
+      #nav_div ul {
+        list-style-type: none;
+      }
+
+      #nav_div li {
+        padding: 10px;
+        cursor: pointer;
+        border-bottom: 1px solid #ddd;
+      }
+
+      #nav_div li:hover {
+        background-color: #e0e0e0;
+      }
+
+      .content_div {
+        padding: 20px;
+      }
+
+      #content_frame {
+        width: 100%;
+        height: 80vh;
+        border: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header_div">Class Works</div>
+    <div id="nav_div"></div>
+
+    <div class="content_div">
+      <iframe id="content_frame" src="works/landing.html"></iframe>
+    </div>
+
+    <script>
+      const works = {
+        task1: { title: "Project 1", url: "works/task1/index.html" },
+        task2: { title: "Project 2", url: "works/task2/index.html" },
+        task3: { title: "Project 3", url: "works/task3/index.html" },
+      };
+
+      const navDiv = document.getElementById("nav_div");
+      const contentFrame = document.getElementById("content_frame");
+
+      const navList = document.createElement("div");
+      navDiv.appendChild(navList);
+
+      for (const key in works) {
+        if (works.hasOwnProperty(key)) {
+          const work = works[key];
+          const navItem = document.createElement("button");
+          navItem.textContent = work.title;
+          navItem.addEventListener("click", () => {
+            contentFrame.src = work.url;
+          });
+          navList.appendChild(navItem);
+        }
+      }
+    </script>
+  </body>
+</html>
